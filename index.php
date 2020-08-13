@@ -1,9 +1,5 @@
 <?php
 
-use Zttp\Zttp;
-
-require(__DIR__ . '/vendor/autoload.php');
-
 define('WP_VERSIONS_API', 'https://api.wordpress.org/core/stable-check/1.0/');
 
 function getStableVersion(array $versions) {
@@ -16,7 +12,7 @@ function getStableVersion(array $versions) {
 	return "5.5";
 }
 
-$versions = Zttp::get(WP_VERSIONS_API)->json();
+$versions = json_decode(file_get_contents(WP_VERSIONS_API), JSON_OBJECT_AS_ARRAY);
 
 $stableVersion = getStableVersion($versions);
 
