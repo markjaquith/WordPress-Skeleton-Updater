@@ -3,13 +3,17 @@
 define('WP_VERSIONS_API', 'https://api.wordpress.org/core/stable-check/1.0/');
 
 function getStableVersion(array $versions) {
+	$stableVersion = "5.5";
+	
 	foreach ($versions as $version => $status) {
 		if ('latest' === $status) {
-			return $version;
+			$stableVersion = $version;
 		}
 	}
 
-	return "5.5";
+	$stableVersion = preg_replace('#[^\d.]#', '', $stableVersion);
+
+	return $stableVersion;
 }
 
 $versions = json_decode(file_get_contents(WP_VERSIONS_API), JSON_OBJECT_AS_ARRAY);
