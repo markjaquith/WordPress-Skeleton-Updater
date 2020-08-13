@@ -2,7 +2,7 @@
 
 define('WP_VERSIONS_API', 'https://api.wordpress.org/core/stable-check/1.0/');
 
-function getStableVersion(array $versions) {
+function getStableVersion(array $versions) : string {
 	$stableVersion = "5.5";
 	
 	foreach ($versions as $version => $status) {
